@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="activeMQBean" class="spring4.tutorial.service.ActiveMQMessagingImpl"/>
+    <bean id="encryptedBean" class="spring4.tutorial.service.EncryptionImpl"/>
+
+    <bean id="communicateBean" class="spring4.tutorial.service.Communication">
+        <constructor-arg>
+            <ref bean="encryptedBean"/>
+        </constructor-arg>
+        <property name="messaging">
+            <ref bean="activeMQBean"/>
+        </property>
+    </bean>
+
+
+</beans>
